@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class ConfirmFinalActivity extends AppCompatActivity {
+public class ConfirmFinalOrderActivity extends AppCompatActivity {
 
     private EditText nameEditText,phoneEditText,addressEditText,cityEditText;
     private Button confirmOrderbtn;
@@ -76,7 +76,7 @@ public class ConfirmFinalActivity extends AppCompatActivity {
         saveCurrentDate = currentDate.format(calForDate.getTime());
 
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
-        saveCurrentTime = currentDate.format(calForDate.getTime());
+        saveCurrentTime = currentTime.format(calForDate.getTime());
 
         final DatabaseReference orderRef= FirebaseDatabase.getInstance().getReference()
                 .child("Orders")
@@ -102,8 +102,8 @@ public class ConfirmFinalActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
-                                        Toast.makeText(ConfirmFinalActivity.this, "Your Final Order has been Placed Successfully", Toast.LENGTH_SHORT).show();
-                                        Intent intent=new Intent(ConfirmFinalActivity.this,HomeActivity.class);
+                                        Toast.makeText(ConfirmFinalOrderActivity.this, "Your Final Order has been Placed Successfully", Toast.LENGTH_SHORT).show();
+                                        Intent intent=new Intent(ConfirmFinalOrderActivity.this,HomeActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
                                         finish();

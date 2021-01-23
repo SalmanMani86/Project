@@ -12,10 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.project_final.Model.Products;
 import com.example.project_final.Prevalent.Prevalent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +33,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private ImageView productImage;
     private ElegantNumberButton numberButton;
     private TextView productPrice, productDescription , productName;
-    private String productID="";
+    private String productID="" , state = "Normal";
 
 
 
@@ -58,9 +58,22 @@ public class ProductDetailsActivity extends AppCompatActivity {
         addToCartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addingToCartList();
+                if(state.equals("Order Placed") || state.equals("Order Shipped"))
+                {
+                    Toast.makeText(ProductDetailsActivity.this, "You can purcahse more products, once your order is shipped or confirmed.", Toast.LENGTH_LONG).show();
+                }else{
+                    addingToCartList();
+                }
             }
         });
+    }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        checkOrderState();
+
     }
 
     private void addingToCartList()
@@ -128,6 +141,40 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     productDescription.setText(products.getDescription());
                     Picasso.get().load(products.getImage()).into(productImage);
                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void checkOrderState()
+    {
+        DatabaseReference orderRef ;
+        orderRef = FirebaseDatabase.getInstance().getReference().child("Orders").child(Prevalent.currentOnlineUser.getPhone());
+
+        orderRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                if(snapshot.exists())
+                {
+                    String shippingState = snapshot.child("state").getValue().toString();
+
+                    if(shippingState.equals("shipped"))
+                    {
+                        state = "Order Shipped";
+
+                    }
+                    else if(shippingState.equals("not shipped"))
+                    {
+                        state = "Order Placed";
+
+                    }
+                }
+
             }
 
             @Override

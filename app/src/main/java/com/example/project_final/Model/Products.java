@@ -1,4 +1,4 @@
-package com.example.project_final;
+package com.example.project_final.Model;
 
 public class Products {
     Products(){}
