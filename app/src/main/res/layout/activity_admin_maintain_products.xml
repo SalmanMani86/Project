@@ -9,7 +9,8 @@
     android:layout_marginEnd="15dp"
     app:cardElevation="15dp"
     android:layout_marginLeft="15dp"
-    tools:context=".AdminMaintainProductsActivity">
+    tools:context=".Admin.AdminMaintainProductsActivity"
+    android:layout_marginBottom="5dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -82,5 +83,21 @@
             android:padding="12dp"
             android:layout_margin="5dp"
             android:textColor="@color/white"/>
+
+        <Button
+            android:id="@+id/delete_product_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete This Product"
+            android:layout_below="@+id/apply_changes_btn"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18sp"
+            android:layout_margin="30dp"
+            android:background="@drawable/buttons"
+            android:padding="12dp"
+            android:textColor="@color/white"/>
+
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

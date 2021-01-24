@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.project_final.Admin.AdminMaintainProductsActivity;
 import com.example.project_final.Model.Products;
 import com.example.project_final.Prevalent.Prevalent;
 import com.example.project_final.ViewHolder.ProductViewHolder;
@@ -47,7 +48,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
          Intent intent=getIntent();
          Bundle bundle=intent.getExtras();
          if(bundle!=null){
-             type=getIntent().getExtras().get("Admin").toString();
+             type=getIntent().getExtras().get("com/example/project_final/Admin").toString();
          }
 
 
@@ -66,8 +67,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this , CartActivity.class);
-                startActivity(intent);
+                if(!type.equals("com/example/project_final/Admin"))
+                {
+                    Intent intent = new Intent(HomeActivity.this , CartActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
 
@@ -87,7 +92,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
 
 
-        if(!type.equals("Admin")){
+        if(!type.equals("com/example/project_final/Admin")){
             userNameTextView.setText(Prevalent.currentOnlineUser.getName());
             Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
         }
@@ -126,9 +131,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                if(type.equals("Admin")){
-                                    Intent intent = new Intent(HomeActivity.this,AdminMaintainProductsActivity.class);
-                                    intent.putExtra("pid",model.getPid());
+                                if(type.equals("com/example/project_final/Admin")){
+                                    Intent intent = new Intent(HomeActivity.this, AdminMaintainProductsActivity.class);
+                                    intent.putExtra("pid", model.getPid());
                                     startActivity(intent);
                                 }
                                 else{
@@ -204,13 +209,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_cart)
         {
-            Intent intent = new Intent(HomeActivity.this , CartActivity.class);
-            startActivity(intent);
+            if(!type.equals("com/example/project_final/Admin"))
+            {
+                Intent intent = new Intent(HomeActivity.this , CartActivity.class);
+                startActivity(intent);
+            }
+
         }
         else if (id == R.id.nav_search){
-
-            Intent intent = new Intent(HomeActivity.this , SearchProductActivity.class);
-                 startActivity(intent);
+            if(!type.equals("com/example/project_final/Admin"))
+            {
+                Intent intent = new Intent(HomeActivity.this , SearchProductActivity.class);
+                startActivity(intent);
+            }
         }
         else if (id == R.id.nav_categories)
         {
@@ -218,17 +229,25 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
         else if (id == R.id.nav_settings)
         {
-            Intent intent = new Intent(HomeActivity.this, SettinsActivity.class);
-            startActivity(intent);
+            if(!type.equals("com/example/project_final/Admin"))
+            {
+                Intent intent = new Intent(HomeActivity.this, SettinsActivity.class);
+                startActivity(intent);
+            }
+
         }
         else if (id == R.id.nav_logout)
         {
-            Paper.book().destroy();
+            if(!type.equals("com/example/project_final/Admin"))
+            {
+                Paper.book().destroy();
 
-            Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
+                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

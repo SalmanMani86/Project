@@ -1,4 +1,4 @@
-package com.example.project_final;
+package com.example.project_final.Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.example.project_final.HomeActivity;
+import com.example.project_final.MainActivity;
+import com.example.project_final.R;
 
 public class AdminCategoryActivity extends AppCompatActivity
 {
@@ -45,11 +49,9 @@ public class AdminCategoryActivity extends AppCompatActivity
         maintainProductsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminCategoryActivity.this , MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                Intent intent = new Intent(AdminCategoryActivity.this , HomeActivity.class);
+                intent.putExtra("com/example/project_final/Admin", "com/example/project_final/Admin");
                 startActivity(intent);
-                finish();
-
             }
         });
 
@@ -57,9 +59,10 @@ public class AdminCategoryActivity extends AppCompatActivity
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminCategoryActivity.this ,HomeActivity.class);
-               intent.putExtra("Admin","Admin");
+                Intent intent = new Intent(AdminCategoryActivity.this , MainActivity.class);
+                intent.putExtra("com/example/project_final/Admin", "com/example/project_final/Admin");
                 startActivity(intent);
+                finish();
             }
         });
 
