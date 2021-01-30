@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project_final.R;
+import com.example.project_final.Sellers.SellerProductCategoryActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -77,7 +78,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task)
             {
-                Intent intent = new Intent(AdminMaintainProductsActivity.this, AdminCategoryActivity.class);
+                Intent intent = new Intent(AdminMaintainProductsActivity.this, SellerProductCategoryActivity.class);
                 startActivity(intent);
                 finish();
                 Toast.makeText(AdminMaintainProductsActivity.this, "The Product is deleted successfully.", Toast.LENGTH_SHORT).show();
@@ -115,7 +116,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
                     if(task.isSuccessful())
                     {
                         Toast.makeText(AdminMaintainProductsActivity.this, "Changes Applied Successfully.", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(AdminMaintainProductsActivity.this,AdminCategoryActivity.class);
+                        Intent intent = new Intent(AdminMaintainProductsActivity.this, SellerProductCategoryActivity.class);
                         startActivity(intent);
                         finish();
                     }

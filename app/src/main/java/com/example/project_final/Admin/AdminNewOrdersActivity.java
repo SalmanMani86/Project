@@ -112,9 +112,6 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
         ordersList.setAdapter(adapter);
         adapter.startListening();
     }
-
-
-
     public  static class AdminOrdersViewHolder extends RecyclerView.ViewHolder
     {
         public TextView userName, userPhoneNumber, userDateTime, userShippingAddress, userTotalPrice;
@@ -131,8 +128,6 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
             showOrdersBtn = itemView.findViewById(R.id.show_all_products_btn);
         }
     }
-
-
     private void RemoverOrder(String uID) {
         ordersRef.child(uID).removeValue();
 
