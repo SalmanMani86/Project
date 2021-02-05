@@ -36,9 +36,6 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_maintain_products);
-
-
-
         productID = getIntent().getStringExtra("pid");
         productsRef = FirebaseDatabase.getInstance().getReference().child("Products").child(productID);
 
@@ -116,7 +113,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
                     if(task.isSuccessful())
                     {
                         Toast.makeText(AdminMaintainProductsActivity.this, "Changes Applied Successfully.", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(AdminMaintainProductsActivity.this, SellerProductCategoryActivity.class);
+                        Intent intent = new Intent(AdminMaintainProductsActivity.this, AdminHomeActivity.class);
                         startActivity(intent);
                         finish();
                     }
@@ -124,7 +121,6 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
             });
         }
     }
-
     private void displaySpecificProductInfo()
     {
         productsRef.addValueEventListener(new ValueEventListener() {

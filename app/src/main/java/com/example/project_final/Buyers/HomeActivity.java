@@ -1,5 +1,4 @@
 package com.example.project_final.Buyers;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -134,7 +133,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                             @Override
                             public void onClick(View v) {
                                 if(type.equals("com/example/project_final/Admin")){
-                                    Intent intent = new Intent(HomeActivity.this, AdminMaintainProductsActivity.class);
+                                    Intent intent = new Intent(HomeActivity.this,AdminMaintainProductsActivity.class);
                                     intent.putExtra("pid", model.getPid());
                                     startActivity(intent);
                                 }

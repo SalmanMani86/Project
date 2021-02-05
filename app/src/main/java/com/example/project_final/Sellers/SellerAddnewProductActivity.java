@@ -236,6 +236,7 @@ public class SellerAddnewProductActivity extends AppCompatActivity
     {
         HashMap<String, Object> productMap = new HashMap<>();
         productMap.put("pid", productRandomKey);
+        productMap.put("pname",Pname);
         productMap.put("date", saveCurrentDate);
         productMap.put("time", saveCurrentTime);
         productMap.put("description", Description);
