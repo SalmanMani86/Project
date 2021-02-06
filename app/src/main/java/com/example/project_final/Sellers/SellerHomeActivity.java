@@ -49,12 +49,10 @@ public class SellerHomeActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     Intent intent =new Intent(SellerHomeActivity.this,SellerHomeActivity.class);
                     startActivity(intent);
-                    finish();
                     return  true;
                 case R.id.navigation_add:
                     Intent intent2 =new Intent(SellerHomeActivity.this,SellerProductCategoryActivity.class);
                     startActivity(intent2);
-                    finish();
                     return  true;
                 case R.id.navigation_logout:
                     final FirebaseAuth mAuth;
