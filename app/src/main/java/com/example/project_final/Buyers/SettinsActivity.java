@@ -56,7 +56,6 @@ public class SettinsActivity extends AppCompatActivity
         setContentView(R.layout.activity_settins);
 
         storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("Profile pictures");
-
         profileImageView = (CircleImageView) findViewById(R.id.settings_profile_image);
         fullNameEditText = (EditText) findViewById(R.id.settings_full_name);
         userPhoneEditText = (EditText) findViewById(R.id.settings_phone_number);
@@ -218,9 +217,7 @@ public class SettinsActivity extends AppCompatActivity
         {
             final StorageReference fileRef = storageProfilePrictureRef
                     .child(Prevalent.currentOnlineUser.getPhone() + ".jpg");
-
             uploadTask = fileRef.putFile(imageUri);
-
             uploadTask.continueWithTask(new Continuation() {
                 @Override
                 public Object then(@NonNull Task task) throws Exception
@@ -288,12 +285,13 @@ public class SettinsActivity extends AppCompatActivity
                         String name = dataSnapshot.child("name").getValue().toString();
                         String phone = dataSnapshot.child("phone").getValue().toString();
                         String address = dataSnapshot.child("address").getValue().toString();
-
-                        Picasso.get().load(image).into(profileImageView);
                         fullNameEditText.setText(name);
                         userPhoneEditText.setText(phone);
                         addressEditText.setText(address);
+                        Picasso.get().load(image).into(profileImageView);
+
                     }
+
                 }
             }
 
